@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepSeek Chat Saver</title>
+    <!-- 修复：修正global.css的路径，指向正确的assets/styles目录 -->
+    <link rel="stylesheet" href="assets/styles/global.css">
+    <link rel="stylesheet" href="assets/bootstrap-3.0.0/css/bootstrap.css">
+    <script src="assets/jquery-2.0.3.js"></script>
+    <script src="assets/bootstrap-3.0.0/js/bootstrap.js"></script>
+    <script src="assets/scripts/dynamic-enhance.js"></script>
+    <script type="module" src="popup.js"></script>
+    <style>
+        body {
+            width: 350px;
+            padding: 15px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+        .section {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+        h3 {
+            margin: 0 0 10px 0;
+            color: #2563eb; /* 明确指定颜色，避免依赖未定义的CSS变量 */
+            font-size: 16px;
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 6px 8px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        button {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            flex: 1;
+        }
+        #saveBtn {
+            background-color: #2563eb;
+            color: white;
+        }
+        /* 确保configSaveBtn元素存在且样式正确 */
+        #configSaveBtn {
+            background-color: #4ade80;
+            color: #1e293b;
+        }
+        #restoreBtn {
+            background-color: #facc15;
+            color: #1e293b;
+        }
+        #status {
+            margin-top: 10px;
+            padding: 5px;
+            min-height: 20px;
+        }
+        #platformInfo {
+            margin: 5px 0;
+            padding: 5px;
+            font-style: italic;
+        }
+        .hint {
+            font-size: 12px;
+            color: #666;
+            margin-top: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <h3>聊天记录保存</h3>
+        <div id="platformInfo"></div>
+        <button id="saveBtn" disabled>保存当前聊天记录</button>
+    </div>
+
+    <div class="section">
+        <h3>配置设置</h3>
+        
+        <div class="form-group">
+            <label for="filenamePattern">文件名格式</label>
+            <input type="text" id="filenamePattern" placeholder="例如: DeepSeek_Chat_{datetime}">
+            <div class="hint">可用变量: {datetime} {date} {time}</div>
+        </div>
+        
+        <div class="form-group">
+            <label for="savePath">保存路径 (相对)</label>
+            <input type="text" id="savePath" placeholder="例如: deepseek_chats">
+            <div class="hint">仅支持相对路径，不允许特殊字符</div>
+        </div>
+        
+        <div class="form-group">
+            <label>
+                <input type="checkbox" id="autoSave"> 自动保存 (无需确认对话框)
+            </label>
+        </div>
+        
+        <!-- 关键：确保包含id为configSaveBtn的按钮 -->
+        <div class="btn-group">
+            <button id="configSaveBtn">保存配置</button>
+            <button id="restoreBtn">恢复默认</button>
+        </div>
+    </div>
+
+    <div id="status"></div>
+</body>
+</html>

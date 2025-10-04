@@ -1,0 +1,25 @@
+/* 全局样式变量 */
+:root {
+  --color-primary: #2563eb;
+  --color-error: #dc2626;
+  --spacing-unit-small: 8px;
+  --font-size-default: 14px;
+  --border-radius-default: 4px;
+}
+
+.extension-notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  background-color: #ff4444;
+  color: white;
+  border-radius: 4px;
+  z-index: 999999;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.extension-notification.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
